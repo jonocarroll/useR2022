@@ -1,0 +1,467 @@
+---
+title: "{ggeasy}"
+subtitle: "Easy Access to 'ggplot2' Commands"
+author: "Jonathan Carroll @ useR2022"
+date: "<table style=\"border-style:none;padding-top:30px;\" class=\".table\">
+  <br />
+  <br />
+  <tr>
+    <th style=\"padding-right:25px!important\" align=\"center\"><a href=\"https://twitter.com/carroll_jono\"> <i class=\"fa fa-twitter fa-3x\"></i> </a></th>
+    <th style=\"padding-left:25px!important\" align=\"center\"><a href=\"https://github.com/jonocarroll\"> <i class=\"fa fa-github fa-3x\"></i> </a></th>
+    <th style=\"padding-left:25px!important\" align=\"center\"><a href=\"https://gitlab.com/jonocarroll\"> <i class=\"fa fa-gitlab fa-3x\"></i> </a></th>
+  </tr>
+  <tr style=\"background-color:#fafafa\">
+    <th style=\"padding-right:25px!important\"><a href=\"https://twitter.com/carroll_jono\"> @carroll_jono </a></th>
+    <th style=\"padding-left:25px!important\"><a href=\"https://github.com/jonocarroll\"> @jonocarroll </a></th>
+    <th style=\"padding-left:25px!important\"><a href=\"https://gitlab.com/jonocarroll\"> @jonocarroll </a></th>
+  </tr></table>"
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+      selfContained: true
+    css: [default, metropolis, metropolis-fonts, "custom-css.css", "animate.css"]
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+options(servr.daemon = TRUE)
+options(DT.options = list(bPaginate = FALSE, fillContainer = TRUE, searching = FALSE, pageLength = 10, scrollY = 350))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+xaringanExtra::use_animate_css()
+# knitr::opts_chunk$set(eval = FALSE)
+library(ggplot2)
+```
+
+# Background
+
+{ggplot2}
+
+> ggplot2 is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.
+
+.pull-right[
+ -- `?ggplot2`
+]
+
+--
+
+<br />
+
+Implementing the Grammar of Graphics has been transformative for visualisations in R.
+
+--
+
+<br />
+
+It has helped countless users truly think about how to craft visual representations of their data.
+
+---
+
+# Default theme()
+
+The default `theme()` for `ggplot2` is reasonable, but it's probably not exactly what you want
+
+--
+
+.pull-left[
+```{r default theme code, eval = FALSE}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth()
+```
+]
+
+.pull-right[
+```{r default theme plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() +
+  geom_smooth() 
+```
+]
+
+---
+
+# ggplot2::theme()
+
+ggplot2::theme()
+
+> Themes are a powerful way to customize the non-data components of your plots: i.e. titles, labels, fonts, background, gridlines, and legends. Themes can be used to give plots a consistent customized look. 
+
+.pull-right[
+ -- `?ggplot2::theme`
+]
+
+---
+
+# ggplot2::theme()
+
+There are ... lots of arguments
+--
+.pull-left[
+```{r, theme(), eval = FALSE}
+theme(
+  line,
+  rect,
+  text,
+  title,
+  aspect.ratio,
+  axis.title,
+  axis.title.x,
+  axis.title.x.top,
+  axis.title.x.bottom,
+  axis.title.y,
+  axis.title.y.left,
+  axis.title.y.right,
+  axis.text,
+  axis.text.x,
+  axis.text.x.top,
+  axis.text.x.bottom,
+  axis.text.y,
+  axis.text.y.left,
+  axis.text.y.right,
+```
+]
+
+.pull-right[
+```{r, theme()2, eval = FALSE}
+  axis.ticks,
+  axis.ticks.x,
+  axis.ticks.x.top,
+  axis.ticks.x.bottom,
+  axis.ticks.y,
+  axis.ticks.y.left,
+  axis.ticks.y.right,
+  axis.ticks.length,
+  axis.ticks.length.x,
+  axis.ticks.length.x.top,
+  axis.ticks.length.x.bottom,
+  axis.ticks.length.y,
+  axis.ticks.length.y.left,
+  axis.ticks.length.y.right,
+```
+]
+
+---
+
+# ggplot2::theme()  (...continued)
+
+.pull-left[
+```{r, theme()3, eval = FALSE}
+  axis.line,
+  axis.line.x,
+  axis.line.x.top,
+  axis.line.x.bottom,
+  axis.line.y,
+  axis.line.y.left,
+  axis.line.y.right,
+  legend.background,
+  legend.margin,
+  legend.spacing,
+  legend.spacing.x,
+  legend.spacing.y,
+  legend.key,
+  legend.key.size,
+  legend.key.height,
+  legend.key.width,
+  legend.text,
+  legend.text.align,
+  legend.title,
+  legend.title.align,
+```
+]
+
+.pull-right[
+```{r, theme()4, eval = FALSE}
+  legend.position,
+  legend.direction,
+  legend.justification,
+  legend.box,
+  legend.box.just,
+  legend.box.margin,
+  legend.box.background,
+  legend.box.spacing,
+  panel.background,
+  panel.border,
+  panel.spacing,
+  panel.spacing.x,
+  panel.spacing.y,
+  panel.grid,
+  panel.grid.major,
+  panel.grid.minor,
+  panel.grid.major.x,
+  panel.grid.major.y,
+  panel.grid.minor.x,
+  panel.grid.minor.y,
+  panel.ontop,
+```
+]
+
+---
+
+# ggplot2::theme()  (...continued again)
+
+.pull-left[
+```{r, theme()5, eval = FALSE}
+  plot.background,
+  plot.title,
+  plot.title.position,
+  plot.subtitle,
+  plot.caption,
+  plot.caption.position,
+  plot.tag,
+  plot.tag.position,
+  plot.margin,
+  strip.background,
+  strip.background.x,
+  strip.background.y,
+  strip.placement,
+  strip.text,
+  strip.text.x,
+  strip.text.y,
+  strip.switch.pad.grid,
+  strip.switch.pad.wrap,
+  ...,
+  complete = FALSE,
+  validate = TRUE
+)
+```
+]
+
+--
+
+.pull-right[
+Phew!
+]
+
+---
+
+# ggplot2::theme_bw()
+
+There are "shortcuts" to some alternative themes
+
+--
+
+.pull-left[
+```{r theme_bw code, eval = FALSE}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw()
+```
+]
+
+.pull-right[
+```{r theme_bw plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() +
+  geom_smooth() + 
+  theme_bw()
+```
+]
+
+---
+
+# ggplot2::theme_minimal()
+
+There are "shortcuts" to some alternative themes
+
+.pull-left[
+```{r theme_minimal code, eval = FALSE}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_minimal()
+```
+]
+
+.pull-right[
+```{r theme_minimal plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() +
+  geom_smooth() + 
+  theme_minimal()
+```
+]
+
+---
+
+# Complete themes
+
+There are several reasonable options to choose from
+
+```{r complete themes, eval = FALSE}
+theme_grey()
+theme_gray()
+theme_bw()
+theme_linedraw()
+theme_light()
+theme_dark()
+theme_minimal()
+theme_classic()
+theme_void()
+theme_test()
+```
+
+--
+
+... or create your own!
+
+---
+
+# bbplot::bbc_style()
+
+`devtools::install_github('bbc/bbplot')`
+
+.pull-left[
+```{r bbc_style code, eval = FALSE}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  bbplot::bbc_style()
+```
+]
+
+.pull-right[
+```{r bbc_style plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() +
+  geom_smooth() + 
+  bbplot::bbc_style()
+```
+]
+
+---
+
+# ftplottools::ft_theme()
+
+`devtools::install_github('Financial-Times/ftplottools')`
+
+.pull-left[
+```{r ft_theme code, eval = FALSE}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  ftplottools::ft_theme()
+```
+]
+
+.pull-right[
+```{r ft_theme plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() +
+  geom_smooth() + 
+  ftplottools::ft_theme()
+```
+]
+
+---
+
+# theme_bw()
+
+This just sets many of the settings to alternatives
+
+```{r theme_bw, eval = FALSE}
+theme_bw(base_size = 11, 
+         base_family = "", 
+         base_line_size = 0.5, 
+         base_rect_size = 0.5) %+replace% 
+theme(axis.ticks = element_blank(), 
+      legend.background = element_blank(), 
+      legend.key = element_blank(), 
+      panel.background = element_blank(), 
+      panel.border = element_blank(), 
+      strip.background = element_blank(), 
+      plot.background = element_blank()
+)
+```
+
+--
+
+`theme_bw()` is `theme_grey()` with other settings
+
+---
+
+# The arguments are hierarchical
+
+```{r axis text, eval = FALSE}
+  axis.text,
+  axis.text.x,
+  axis.text.x.top,
+  axis.text.x.bottom,
+```
+
+--
+
+> axis.text.\*.\* inherits from axis.text.* which inherits from axis.text, which in turn inherits from text
+
+.pull-right[
+-- `?theme`
+]
+
+--
+
+But there are too many to remember, and they expect to receive e.g. `element_text()` with more arguments
+
+--
+
+Again - very powerful, but somewhat complicated to use.
+
+---
+
+# Enter {ggeasy}
+
+--
+
+.center[
+<img src="xkcd.png" width="100%" />
+]
+
+--
+
+.center[
+<img src="logo.gif" height="250" />
+]
+
+---
+
+# In Summary
+
+ - Vignettes are under-utilised and can be very useful
+
+ <!--  -->
+
+ - You can get a head-start with `README_to_vignette`
+
+ <!--  -->
+
+ - Think about how a new user would approach your package -- where should they start?
+
+ <!--  -->
+ 
+ - If this inspires you to write a vignette, please let me know on Twitter!
+
+ <!--  -->
+ 
+ - If you'd like to collaborate on a vignette-assisting package, let me know!
+
+<table style="border-style:none;padding-top:30px;" class=".table">
+  <br />
+  <br />
+  <tr>
+    <th style="padding-right:25px!important" align="center"><a href="https://twitter.com/carroll_jono"> <i class="fa fa-twitter fa-3x"></i> </a></th>
+    <th style="padding-left:25px!important" align="center"><a href="https://github.com/jonocarroll"> <i class="fa fa-github fa-3x"></i> </a></th>
+    <th style="padding-left:25px!important" align="center"><a href="https://gitlab.com/jonocarroll"> <i class="fa fa-gitlab fa-3x"></i> </a></th>
+  </tr>
+  <tr style="background-color:#fafafa">
+    <th style="padding-right:25px!important"><a href="https://twitter.com/carroll_jono"> @carroll_jono </a></th>
+    <th style="padding-left:25px!important"><a href="https://github.com/jonocarroll"> @jonocarroll </a></th>
+     <th style="padding-left:25px!important"><a href="https://gitlab.com/jonocarroll"> @jonocarroll </a></th>
+  </tr></table>
+

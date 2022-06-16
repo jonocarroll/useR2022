@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>{ggeasy}</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jonathan Carroll @ useR2022" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom-css.css" type="text/css" />
+    <link rel="stylesheet" href="animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# {ggeasy}
+]
+.subtitle[
+## Easy Access to ‘ggplot2’ Commands
+]
+.author[
+### Jonathan Carroll @ useR2022
+]
+.date[
+### <table style="border-style:none;padding-top:30px;" class=".table">
+<br /> <br />
+<tr>
+<th style="padding-right:25px!important" align="center">
+<a href="https://twitter.com/carroll_jono"> <i class="fa fa-twitter fa-3x"></i> </a>
+</th>
+<th style="padding-left:25px!important" align="center">
+<a href="https://github.com/jonocarroll"> <i class="fa fa-github fa-3x"></i> </a>
+</th>
+<th style="padding-left:25px!important" align="center">
+<a href="https://gitlab.com/jonocarroll"> <i class="fa fa-gitlab fa-3x"></i> </a>
+</th>
+</tr>
+<tr style="background-color:#fafafa">
+<th style="padding-right:25px!important">
+<a href="https://twitter.com/carroll_jono"> <span class="citation">@carroll_jono</span> </a>
+</th>
+<th style="padding-left:25px!important">
+<a href="https://github.com/jonocarroll"> <span class="citation">@jonocarroll</span> </a>
+</th>
+<th style="padding-left:25px!important">
+<a href="https://gitlab.com/jonocarroll"> <span class="citation">@jonocarroll</span> </a>
+</th>
+</tr>
+</table>
+]
+
+---
+
+
+
+
+# Background
+
+{ggplot2}
+
+&gt; ggplot2 is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.
+
+.pull-right[
+ -- `?ggplot2`
+]
+
+--
+
+&lt;br /&gt;
+
+Implementing the Grammar of Graphics has been transformative for visualisations in R.
+
+--
+
+&lt;br /&gt;
+
+It has helped countless users truly think about how to craft visual representations of their data.
+
+---
+
+# Default theme()
+
+The default `theme()` for `ggplot2` is reasonable, but it's probably not exactly what you want
+
+--
+
+.pull-left[
+
+```r
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth()
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/default theme plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# ggplot2::theme()
+
+ggplot2::theme()
+
+&gt; Themes are a powerful way to customize the non-data components of your plots: i.e. titles, labels, fonts, background, gridlines, and legends. Themes can be used to give plots a consistent customized look. 
+
+.pull-right[
+ -- `?ggplot2::theme`
+]
+
+---
+
+# ggplot2::theme()
+
+There are ... lots of arguments
+--
+.pull-left[
+
+```r
+theme(
+  line,
+  rect,
+  text,
+  title,
+  aspect.ratio,
+  axis.title,
+  axis.title.x,
+  axis.title.x.top,
+  axis.title.x.bottom,
+  axis.title.y,
+  axis.title.y.left,
+  axis.title.y.right,
+  axis.text,
+  axis.text.x,
+  axis.text.x.top,
+  axis.text.x.bottom,
+  axis.text.y,
+  axis.text.y.left,
+  axis.text.y.right,
+```
+]
+
+.pull-right[
+
+```r
+  axis.ticks,
+  axis.ticks.x,
+  axis.ticks.x.top,
+  axis.ticks.x.bottom,
+  axis.ticks.y,
+  axis.ticks.y.left,
+  axis.ticks.y.right,
+  axis.ticks.length,
+  axis.ticks.length.x,
+  axis.ticks.length.x.top,
+  axis.ticks.length.x.bottom,
+  axis.ticks.length.y,
+  axis.ticks.length.y.left,
+  axis.ticks.length.y.right,
+```
+]
+
+---
+
+# ggplot2::theme()  (...continued)
+
+.pull-left[
+
+```r
+  axis.line,
+  axis.line.x,
+  axis.line.x.top,
+  axis.line.x.bottom,
+  axis.line.y,
+  axis.line.y.left,
+  axis.line.y.right,
+  legend.background,
+  legend.margin,
+  legend.spacing,
+  legend.spacing.x,
+  legend.spacing.y,
+  legend.key,
+  legend.key.size,
+  legend.key.height,
+  legend.key.width,
+  legend.text,
+  legend.text.align,
+  legend.title,
+  legend.title.align,
+```
+]
+
+.pull-right[
+
+```r
+  legend.position,
+  legend.direction,
+  legend.justification,
+  legend.box,
+  legend.box.just,
+  legend.box.margin,
+  legend.box.background,
+  legend.box.spacing,
+  panel.background,
+  panel.border,
+  panel.spacing,
+  panel.spacing.x,
+  panel.spacing.y,
+  panel.grid,
+  panel.grid.major,
+  panel.grid.minor,
+  panel.grid.major.x,
+  panel.grid.major.y,
+  panel.grid.minor.x,
+  panel.grid.minor.y,
+  panel.ontop,
+```
+]
+
+---
+
+# ggplot2::theme()  (...continued again)
+
+.pull-left[
+
+```r
+  plot.background,
+  plot.title,
+  plot.title.position,
+  plot.subtitle,
+  plot.caption,
+  plot.caption.position,
+  plot.tag,
+  plot.tag.position,
+  plot.margin,
+  strip.background,
+  strip.background.x,
+  strip.background.y,
+  strip.placement,
+  strip.text,
+  strip.text.x,
+  strip.text.y,
+  strip.switch.pad.grid,
+  strip.switch.pad.wrap,
+  ...,
+  complete = FALSE,
+  validate = TRUE
+)
+```
+]
+
+--
+
+.pull-right[
+Phew!
+]
+
+---
+
+# ggplot2::theme_bw()
+
+There are "shortcuts" to some alternative themes
+
+--
+
+.pull-left[
+
+```r
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw()
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/theme_bw plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# ggplot2::theme_minimal()
+
+There are "shortcuts" to some alternative themes
+
+.pull-left[
+
+```r
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_minimal()
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/theme_minimal plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Complete themes
+
+There are several reasonable options to choose from
+
+
+```r
+theme_grey()
+theme_gray()
+theme_bw()
+theme_linedraw()
+theme_light()
+theme_dark()
+theme_minimal()
+theme_classic()
+theme_void()
+theme_test()
+```
+
+--
+
+... or create your own!
+
+---
+
+# bbplot::bbc_style()
+
+`devtools::install_github('bbc/bbplot')`
+
+.pull-left[
+
+```r
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  bbplot::bbc_style()
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/bbc_style plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# ftplottools::ft_theme()
+
+`devtools::install_github('Financial-Times/ftplottools')`
+
+.pull-left[
+
+```r
+ggplot(mtcars, aes(mpg, hp)) + 
+  geom_point() + 
+  geom_smooth() + 
+  ftplottools::ft_theme()
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/ft_theme plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# theme_bw()
+
+This just sets many of the settings to alternatives
+
+
+```r
+theme_bw(base_size = 11, 
+         base_family = "", 
+         base_line_size = 0.5, 
+         base_rect_size = 0.5) %+replace% 
+theme(axis.ticks = element_blank(), 
+      legend.background = element_blank(), 
+      legend.key = element_blank(), 
+      panel.background = element_blank(), 
+      panel.border = element_blank(), 
+      strip.background = element_blank(), 
+      plot.background = element_blank()
+)
+```
+
+--
+
+`theme_bw()` is `theme_grey()` with other settings
+
+---
+
+# The arguments are hierarchical
+
+
+```r
+  axis.text,
+  axis.text.x,
+  axis.text.x.top,
+  axis.text.x.bottom,
+```
+
+--
+
+&gt; axis.text.\*.\* inherits from axis.text.* which inherits from axis.text, which in turn inherits from text
+
+.pull-right[
+-- `?theme`
+]
+
+--
+
+But there are too many to remember, and they expect to receive e.g. `element_text()` with more arguments
+
+--
+
+Again - very powerful, but somewhat complicated to use.
+
+---
+
+# Enter {ggeasy}
+
+--
+
+.center[
+&lt;img src="xkcd.png" width="100%" /&gt;
+]
+
+--
+
+.center[
+&lt;img src="logo.gif" height="250" /&gt;
+]
+
+---
+
+# In Summary
+
+ - Vignettes are under-utilised and can be very useful
+
+ &lt;!--  --&gt;
+
+ - You can get a head-start with `README_to_vignette`
+
+ &lt;!--  --&gt;
+
+ - Think about how a new user would approach your package -- where should they start?
+
+ &lt;!--  --&gt;
+ 
+ - If this inspires you to write a vignette, please let me know on Twitter!
+
+ &lt;!--  --&gt;
+ 
+ - If you'd like to collaborate on a vignette-assisting package, let me know!
+
+&lt;table style="border-style:none;padding-top:30px;" class=".table"&gt;
+  &lt;br /&gt;
+  &lt;br /&gt;
+  &lt;tr&gt;
+    &lt;th style="padding-right:25px!important" align="center"&gt;&lt;a href="https://twitter.com/carroll_jono"&gt; &lt;i class="fa fa-twitter fa-3x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
+    &lt;th style="padding-left:25px!important" align="center"&gt;&lt;a href="https://github.com/jonocarroll"&gt; &lt;i class="fa fa-github fa-3x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
+    &lt;th style="padding-left:25px!important" align="center"&gt;&lt;a href="https://gitlab.com/jonocarroll"&gt; &lt;i class="fa fa-gitlab fa-3x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr style="background-color:#fafafa"&gt;
+    &lt;th style="padding-right:25px!important"&gt;&lt;a href="https://twitter.com/carroll_jono"&gt; @carroll_jono &lt;/a&gt;&lt;/th&gt;
+    &lt;th style="padding-left:25px!important"&gt;&lt;a href="https://github.com/jonocarroll"&gt; @jonocarroll &lt;/a&gt;&lt;/th&gt;
+     &lt;th style="padding-left:25px!important"&gt;&lt;a href="https://gitlab.com/jonocarroll"&gt; @jonocarroll &lt;/a&gt;&lt;/th&gt;
+  &lt;/tr&gt;&lt;/table&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"selfContained": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
