@@ -431,6 +431,159 @@ Again - very powerful, but somewhat complicated to use.
 
 ---
 
+# Motivation
+
+Similar to `theme_bw()`, shortcuts to make life easier.
+
+--
+
+Consider a common scenario: rotate the `x` axis labels to diagonal
+
+--
+
+.pull-left[
+```{r rotatex code, eval = FALSE}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot() 
+```
+]
+
+.pull-right[
+```{r rotatex plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(iris, aes(Species, Petal.Length)) + 
+  geom_boxplot() 
+```
+]
+
+---
+
+# Motivation
+
+Similar to `theme_bw()`, shortcuts to make life easier.
+
+Consider a common scenario: rotate the `x` axis labels to diagonal
+
+.pull-left[
+```{r rotatex1 code, eval = FALSE}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot() +
+* theme(
+*   axis.text.x = element_text(
+*     angle = 45
+*   )
+* )
+```
+]
+
+.pull-right[
+```{r rotatex1 plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(iris, aes(Species, Petal.Length)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45))
+```
+]
+
+---
+
+# Motivation
+
+Similar to `theme_bw()`, shortcuts to make life easier.
+
+Consider a common scenario: rotate the `x` axis labels to diagonal
+
+.pull-left[
+```{r rotatex2 code, eval = FALSE}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot() + 
+  theme(
+    axis.text.x = element_text(
+      angle = 45, 
+*     hjust = 1
+    )
+  )
+```
+]
+
+.pull-right[
+```{r rotatex2 plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+]
+
+---
+
+# Let's make it easier
+
+![](correspondence.png)
+
+--
+
+* `which = c("both", "x", "y")`
+* `side = c("left", "middle", "right")`
+* `angle = n` or `c("startattop", "startatbottom")`
+
+---
+
+# Let's make it easier
+
+.pull-left[
+```{r easyrotate1 code, eval = FALSE}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+* ggeasy::easy_rotate_labels(
+*   which = "x", 
+*   angle = 45, 
+*   side = "right"
+* )
+```
+]
+
+.pull-right[
+```{r easyrotate1 plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+  ggeasy::easy_rotate_labels(which = "x", angle = 45, side = "right")
+```
+]
+
+---
+
+# Let's make it EVEN easier
+
+--
+
+.pull-left[
+```{r easyrotate2 code, eval = FALSE}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+* ggeasy::easy_rotate_x_labels(
+*   angle = 45, 
+*   side = "right"
+* )
+```
+]
+
+.pull-right[
+```{r easyrotate2 plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+  ggeasy::easy_rotate_x_labels(angle = 45, side = "right")
+```
+]
+
+
+---
+
 # In Summary
 
  - Vignettes are under-utilised and can be very useful

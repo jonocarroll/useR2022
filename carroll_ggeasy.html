@@ -440,6 +440,144 @@ Again - very powerful, but somewhat complicated to use.
 
 ---
 
+# Motivation
+
+Similar to `theme_bw()`, shortcuts to make life easier.
+
+--
+
+Consider a common scenario: rotate the `x` axis labels to diagonal
+
+--
+
+.pull-left[
+
+```r
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot() 
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/rotatex plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Motivation
+
+Similar to `theme_bw()`, shortcuts to make life easier.
+
+Consider a common scenario: rotate the `x` axis labels to diagonal
+
+.pull-left[
+
+```r
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot() +
+* theme(
+*   axis.text.x = element_text(
+*     angle = 45
+*   )
+* )
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/rotatex1 plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Motivation
+
+Similar to `theme_bw()`, shortcuts to make life easier.
+
+Consider a common scenario: rotate the `x` axis labels to diagonal
+
+.pull-left[
+
+```r
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+  theme(
+    axis.text.x = element_text(
+      angle = 45, 
+*     hjust = 1
+    )
+  )
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/rotatex2 plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Let's make it easier
+
+![](correspondence.png)
+
+--
+
+* `which = c("both", "x", "y")`
+* `side = c("left", "middle", "right")`
+* `angle = n` or `c("startattop", "startatbottom")`
+
+---
+
+# Let's make it easier
+
+--
+
+.pull-left[
+
+```r
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+* ggeasy::easy_rotate_labels(
+*   which = "x", 
+*   angle = 45, 
+*   side = "right"
+* )
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/easyrotate1 plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Let's make it EVEN easier
+
+--
+
+.pull-left[
+
+```r
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+* ggeasy::easy_rotate_x_labels(
+*   angle = 45, 
+*   side = "right"
+* )
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/easyrotate2 plot-1.png" height="450px" /&gt;
+]
+
+
+---
+
 # In Summary
 
  - Vignettes are under-utilised and can be very useful
