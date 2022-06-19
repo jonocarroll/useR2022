@@ -93,7 +93,8 @@ The default `theme()` for `ggplot2` is reasonable, but it's probably not exactly
 .pull-left[
 
 ```r
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth()
 ```
@@ -168,6 +169,7 @@ theme(
 ]
 
 ---
+class: animated flipInY
 
 # ggplot2::theme()  (...continued)
 
@@ -225,6 +227,7 @@ theme(
 ]
 
 ---
+class: animated flipInY
 
 # ggplot2::theme()  (...continued again)
 
@@ -256,8 +259,6 @@ theme(
 ```
 ]
 
---
-
 .pull-right[
 Phew!
 ]
@@ -273,10 +274,11 @@ There are "shortcuts" to some alternative themes
 .pull-left[
 
 ```r
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) +
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth() + 
-  theme_bw()
+* theme_bw()
 ```
 ]
 
@@ -293,10 +295,11 @@ There are "shortcuts" to some alternative themes
 .pull-left[
 
 ```r
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) + 
   geom_point() + 
   geom_smooth() + 
-  theme_minimal()
+* theme_minimal()
 ```
 ]
 
@@ -337,10 +340,11 @@ theme_test()
 .pull-left[
 
 ```r
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth() + 
-  bbplot::bbc_style()
+* bbplot::bbc_style()
 ```
 ]
 
@@ -357,10 +361,11 @@ ggplot(mtcars, aes(mpg, hp)) +
 .pull-left[
 
 ```r
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth() + 
-  ftplottools::ft_theme()
+* ftplottools::ft_theme()
 ```
 ]
 
@@ -376,18 +381,18 @@ This just sets many of the settings to alternatives
 
 
 ```r
-theme_bw(base_size = 11, 
-         base_family = "", 
-         base_line_size = 0.5, 
-         base_rect_size = 0.5) %+replace% 
-theme(axis.ticks = element_blank(), 
-      legend.background = element_blank(), 
-      legend.key = element_blank(), 
-      panel.background = element_blank(), 
-      panel.border = element_blank(), 
-      strip.background = element_blank(), 
-      plot.background = element_blank()
-)
+theme_grey(base_size = 11, 
+           base_family = "", 
+           base_line_size = 0.5, 
+           base_rect_size = 0.5) %+replace% 
+  theme(axis.ticks = element_blank(), 
+        legend.background = element_blank(), 
+        legend.key = element_blank(), 
+        panel.background = element_blank(), 
+        panel.border = element_blank(), 
+        strip.background = element_blank(), 
+        plot.background = element_blank()
+  )
 ```
 
 --
@@ -431,8 +436,6 @@ Again - very powerful, but somewhat complicated to use.
 .center[
 &lt;img src="xkcd.png" width="100%" /&gt;
 ]
-
---
 
 .center[
 &lt;img src="logo.gif" height="250" /&gt;
@@ -502,7 +505,7 @@ Consider a common scenario: rotate the `x` axis labels to diagonal
 ```r
 ggplot(iris) + 
   aes(Species, Petal.Width) + 
-  geom_boxplot()  + 
+  geom_boxplot() + 
   theme(
     axis.text.x = element_text(
       angle = 45, 
@@ -532,8 +535,6 @@ ggplot(iris) +
 
 # Let's make it easier
 
---
-
 .pull-left[
 
 ```r
@@ -556,7 +557,15 @@ ggplot(iris) +
 
 # Let's make it EVEN easier
 
+![](correspondence2.png)
+
 --
+
+* also `ggeasy::easy_rotate_y_labels()`
+
+---
+
+# Let's make it EVEN easier
 
 .pull-left[
 
@@ -575,36 +584,218 @@ ggplot(iris) +
 &lt;img src="carroll_ggeasy_files/figure-html/easyrotate2 plot-1.png" height="450px" /&gt;
 ]
 
+---
+
+# ggeasy functions
+
+We aim to cover common use-cases, with duplication if needed
+
+.pull-left[
+
+```r
+easy_add_legend_title()
+easy_adjust_legend()
+easy_all_text_color()
+easy_all_text_colour()
+easy_all_text_size()
+easy_center_title()
+easy_change_legend()
+easy_change_text()
+easy_labs()
+easy_legend_at()
+easy_move_legend()
+easy_plot_caption_size()
+easy_plot_legend_size()
+easy_plot_legend_title_size()
+easy_plot_subtitle_size()
+easy_plot_title_size()
+```
+]
+
+.pull-right[
+
+```r
+easy_remove_axes()
+easy_remove_legend()
+easy_remove_legend_title()
+easy_remove_x_axis()
+easy_remove_y_axis()
+easy_rotate_labels()
+easy_rotate_legend()
+easy_rotate_x_labels()
+easy_rotate_y_labels()
+easy_text_color()
+easy_text_colour()
+easy_text_size()
+easy_x_axis_labels_size()
+easy_x_axis_title_size()
+easy_y_axis_labels_size()
+easy_y_axis_title_size()
+```
+]
+
+---
+
+# Move legend
+
+.pull-left[
+
+```r
+ggplot(mtcars) +
+  aes(
+    x = wt, 
+    y = mpg, 
+    colour = cyl, 
+    size = hp
+  ) +
+  geom_point() + 
+* ggeasy::easy_move_legend(
+*   to = "bottom"
+* )
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/legend plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Increase text size, change colo(u)r
+
+.pull-left[
+
+```r
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+* ggeasy::easy_text_size(16) + 
+* ggeasy::easy_text_colour("red")
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/size plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Increase text size, change colo(u)r
+
+.pull-left[
+
+```r
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+  ggeasy::easy_text_size(16) + 
+* ggeasy::easy_text_color("red")
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/color plot-1.png" height="450px" /&gt;
+]
+
+---
+
+
+# Increase text size, change colo(u)r
+
+.pull-left[
+
+```r
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+  ggeasy::easy_text_size(16) + 
+* ggeasy::easy_text_color(
+*   which = "axis.text.x", 
+*   color = "red"
+* )
+```
+]
+
+.pull-right[
+&lt;img src="carroll_ggeasy_files/figure-html/colorx plot-1.png" height="450px" /&gt;
+]
+
+---
+
+# Want to learn the 'correct' way?
+
+
+```r
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+* ggeasy::easy_rotate_x_labels(angle = 45, side = "right", teach = TRUE)
+```
+
+
+```
+## easy_rotate_x_labels call can be substituted with:
+```
+
+```
+## theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+&lt;img src="carroll_ggeasy_files/figure-html/teach plot-1.png" height="300px" /&gt;
+
+---
+
+# Credit
+
+Many thanks to the contributing developers
+
+- Alicia Schep
+- Jonathan Sidi
+- Bob Rudis
+- Mohamed El Fodil Ihaddaden
+- Thomas Neitmann
+
+---
+
+# Suggestions welcome!
+
+- (PR yet to be merged for gridlines)
+
+- Suggestion for facet strips
+
+--
+
+- What else?
 
 ---
 
 # In Summary
 
- - Vignettes are under-utilised and can be very useful
+- `ggplot2::theme()` is very sophisticated
+--
+... but hard to remember
 
- &lt;!--  --&gt;
+--
 
- - You can get a head-start with `README_to_vignette`
+- `{ggeasy}` provides shortcuts to common actions with autocomplete 
 
- &lt;!--  --&gt;
+--
 
- - Think about how a new user would approach your package -- where should they start?
+.center[
+&lt;img src="carroll_ggeasy_files/figure-html/qr-1.png" width="275px" /&gt;
 
- &lt;!--  --&gt;
- 
- - If this inspires you to write a vignette, please let me know on Twitter!
+[https://jonocarroll.github.io/ggeasy/](https://jonocarroll.github.io/ggeasy/)
+]
 
- &lt;!--  --&gt;
- 
- - If you'd like to collaborate on a vignette-assisting package, let me know!
 
-&lt;table style="border-style:none;padding-top:30px;" class=".table"&gt;
-  &lt;br /&gt;
-  &lt;br /&gt;
+&lt;table style="border-style:none;padding-top:-20px;" class=".table"&gt;
   &lt;tr&gt;
-    &lt;th style="padding-right:25px!important" align="center"&gt;&lt;a href="https://twitter.com/carroll_jono"&gt; &lt;i class="fa fa-twitter fa-3x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
-    &lt;th style="padding-left:25px!important" align="center"&gt;&lt;a href="https://github.com/jonocarroll"&gt; &lt;i class="fa fa-github fa-3x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
-    &lt;th style="padding-left:25px!important" align="center"&gt;&lt;a href="https://gitlab.com/jonocarroll"&gt; &lt;i class="fa fa-gitlab fa-3x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
+    &lt;th style="padding-right:25px!important" align="center"&gt;&lt;a href="https://twitter.com/carroll_jono"&gt; &lt;i class="fa fa-twitter fa-2x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
+    &lt;th style="padding-left:25px!important" align="center"&gt;&lt;a href="https://github.com/jonocarroll"&gt; &lt;i class="fa fa-github fa-2x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
+    &lt;th style="padding-left:25px!important" align="center"&gt;&lt;a href="https://gitlab.com/jonocarroll"&gt; &lt;i class="fa fa-gitlab fa-2x"&gt;&lt;/i&gt; &lt;/a&gt;&lt;/th&gt;
   &lt;/tr&gt;
   &lt;tr style="background-color:#fafafa"&gt;
     &lt;th style="padding-right:25px!important"&gt;&lt;a href="https://twitter.com/carroll_jono"&gt; @carroll_jono &lt;/a&gt;&lt;/th&gt;

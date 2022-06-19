@@ -72,7 +72,8 @@ The default `theme()` for `ggplot2` is reasonable, but it's probably not exactly
 
 .pull-left[
 ```{r default theme code, eval = FALSE}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth()
 ```
@@ -80,7 +81,8 @@ ggplot(mtcars, aes(mpg, hp)) +
 
 .pull-right[
 ```{r default theme plot, echo = FALSE, message = FALSE, out.height="450px"}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) +
+  aes(mpg, hp) +
   geom_point() +
   geom_smooth() 
 ```
@@ -149,6 +151,7 @@ theme(
 ]
 
 ---
+class: animated flipInY
 
 # ggplot2::theme()  (...continued)
 
@@ -204,6 +207,7 @@ theme(
 ]
 
 ---
+class: animated flipInY
 
 # ggplot2::theme()  (...continued again)
 
@@ -234,8 +238,6 @@ theme(
 ```
 ]
 
---
-
 .pull-right[
 Phew!
 ]
@@ -250,16 +252,18 @@ There are "shortcuts" to some alternative themes
 
 .pull-left[
 ```{r theme_bw code, eval = FALSE}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) +
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth() + 
-  theme_bw()
+* theme_bw()
 ```
 ]
 
 .pull-right[
 ```{r theme_bw plot, echo = FALSE, message = FALSE, out.height="450px"}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) + 
   geom_point() +
   geom_smooth() + 
   theme_bw()
@@ -274,16 +278,18 @@ There are "shortcuts" to some alternative themes
 
 .pull-left[
 ```{r theme_minimal code, eval = FALSE}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) + 
   geom_point() + 
   geom_smooth() + 
-  theme_minimal()
+* theme_minimal()
 ```
 ]
 
 .pull-right[
 ```{r theme_minimal plot, echo = FALSE, message = FALSE, out.height="450px"}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() +
   geom_smooth() + 
   theme_minimal()
@@ -321,16 +327,18 @@ theme_test()
 
 .pull-left[
 ```{r bbc_style code, eval = FALSE}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth() + 
-  bbplot::bbc_style()
+* bbplot::bbc_style()
 ```
 ]
 
 .pull-right[
 ```{r bbc_style plot, echo = FALSE, message = FALSE, out.height="450px"}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() +
   geom_smooth() + 
   bbplot::bbc_style()
@@ -345,16 +353,18 @@ ggplot(mtcars, aes(mpg, hp)) +
 
 .pull-left[
 ```{r ft_theme code, eval = FALSE}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() + 
   geom_smooth() + 
-  ftplottools::ft_theme()
+* ftplottools::ft_theme()
 ```
 ]
 
 .pull-right[
 ```{r ft_theme plot, echo = FALSE, message = FALSE, out.height="450px"}
-ggplot(mtcars, aes(mpg, hp)) + 
+ggplot(mtcars) + 
+  aes(mpg, hp) +
   geom_point() +
   geom_smooth() + 
   ftplottools::ft_theme()
@@ -368,18 +378,18 @@ ggplot(mtcars, aes(mpg, hp)) +
 This just sets many of the settings to alternatives
 
 ```{r theme_bw, eval = FALSE}
-theme_bw(base_size = 11, 
-         base_family = "", 
-         base_line_size = 0.5, 
-         base_rect_size = 0.5) %+replace% 
-theme(axis.ticks = element_blank(), 
-      legend.background = element_blank(), 
-      legend.key = element_blank(), 
-      panel.background = element_blank(), 
-      panel.border = element_blank(), 
-      strip.background = element_blank(), 
-      plot.background = element_blank()
-)
+theme_grey(base_size = 11, 
+           base_family = "", 
+           base_line_size = 0.5, 
+           base_rect_size = 0.5) %+replace% 
+  theme(axis.ticks = element_blank(), 
+        legend.background = element_blank(), 
+        legend.key = element_blank(), 
+        panel.background = element_blank(), 
+        panel.border = element_blank(), 
+        strip.background = element_blank(), 
+        plot.background = element_blank()
+  )
 ```
 
 --
@@ -423,8 +433,6 @@ Again - very powerful, but somewhat complicated to use.
 <img src="xkcd.png" width="100%" />
 ]
 
---
-
 .center[
 <img src="logo.gif" height="250" />
 ]
@@ -451,7 +459,8 @@ ggplot(iris) +
 
 .pull-right[
 ```{r rotatex plot, echo = FALSE, message = FALSE, out.height="450px"}
-ggplot(iris, aes(Species, Petal.Length)) + 
+ggplot(iris) + 
+  aes(Species, Petal.Length) + 
   geom_boxplot() 
 ```
 ]
@@ -479,7 +488,8 @@ ggplot(iris) +
 
 .pull-right[
 ```{r rotatex1 plot, echo = FALSE, message = FALSE, out.height="450px"}
-ggplot(iris, aes(Species, Petal.Length)) + 
+ggplot(iris) +
+  aes(Species, Petal.Length) +
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 45))
 ```
@@ -558,7 +568,15 @@ ggplot(iris) +
 
 # Let's make it EVEN easier
 
+![](correspondence2.png)
+
 --
+
+* also `ggeasy::easy_rotate_y_labels()`
+
+---
+
+# Let's make it EVEN easier
 
 .pull-left[
 ```{r easyrotate2 code, eval = FALSE}
@@ -581,36 +599,239 @@ ggplot(iris) +
 ```
 ]
 
+---
+
+# ggeasy functions
+
+We aim to cover common use-cases, with duplication if needed
+
+.pull-left[
+```{r easyf, eval = FALSE}
+easy_add_legend_title()
+easy_adjust_legend()
+easy_all_text_color()
+easy_all_text_colour()
+easy_all_text_size()
+easy_center_title()
+easy_change_legend()
+easy_change_text()
+easy_labs()
+easy_legend_at()
+easy_move_legend()
+easy_plot_caption_size()
+easy_plot_legend_size()
+easy_plot_legend_title_size()
+easy_plot_subtitle_size()
+easy_plot_title_size()
+```
+]
+
+.pull-right[
+```{r easyf2, eval = FALSE}
+easy_remove_axes()
+easy_remove_legend()
+easy_remove_legend_title()
+easy_remove_x_axis()
+easy_remove_y_axis()
+easy_rotate_labels()
+easy_rotate_legend()
+easy_rotate_x_labels()
+easy_rotate_y_labels()
+easy_text_color()
+easy_text_colour()
+easy_text_size()
+easy_x_axis_labels_size()
+easy_x_axis_title_size()
+easy_y_axis_labels_size()
+easy_y_axis_title_size()
+```
+]
+
+---
+
+# Move legend
+
+.pull-left[
+```{r legend code, eval = FALSE}
+ggplot(mtcars) +
+  aes(
+    x = wt, 
+    y = mpg, 
+    colour = cyl, 
+    size = hp
+  ) +
+  geom_point() + 
+* ggeasy::easy_move_legend(
+*   to = "bottom"
+* )
+
+```
+]
+
+.pull-right[
+```{r legend plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars) +
+  aes(wt, mpg, colour = cyl, size = hp) +
+  geom_point() + 
+  ggeasy::easy_move_legend("bottom")
+```
+]
+
+---
+
+# Increase text size, change colo(u)r
+
+.pull-left[
+```{r size code, eval = FALSE}
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+* ggeasy::easy_text_size(16) + 
+* ggeasy::easy_text_colour("red")
+```
+]
+
+.pull-right[
+```{r size plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+  ggeasy::easy_text_size(16) + 
+  ggeasy::easy_text_colour("red")
+```
+]
+
+---
+
+# Increase text size, change colo(u)r
+
+.pull-left[
+```{r color code, eval = FALSE}
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+  ggeasy::easy_text_size(16) + 
+* ggeasy::easy_text_color("red")
+```
+]
+
+.pull-right[
+```{r color plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+  ggeasy::easy_text_size(16) + 
+  ggeasy::easy_text_color("red")
+```
+]
+
+---
+
+
+# Increase text size, change colo(u)r
+
+.pull-left[
+```{r colorx code, eval = FALSE}
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+  ggeasy::easy_text_size(16) + 
+* ggeasy::easy_text_color(
+*   which = "axis.text.x", 
+*   color = "red"
+* )
+```
+]
+
+.pull-right[
+```{r colorx plot, echo = FALSE, message = FALSE, out.height="450px"}
+ggplot(mtcars) +
+  aes(wt, mpg) +
+  geom_point() + 
+  geom_smooth() +
+  ggeasy::easy_text_size(16) + 
+  ggeasy::easy_text_color(
+    which = "axis.text.x", 
+    color = "red"
+  )
+```
+]
+
+---
+
+# Want to learn the 'correct' way?
+
+```{r teach code, eval = FALSE}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+* ggeasy::easy_rotate_x_labels(angle = 45, side = "right", teach = TRUE)
+```
+
+```{r teach plot, echo = FALSE, out.height="300px"}
+ggplot(iris) + 
+  aes(Species, Petal.Width) + 
+  geom_boxplot()  + 
+  ggeasy::easy_rotate_x_labels(angle = 45, side = "right", teach = TRUE)
+```
+
+---
+
+# Credit
+
+Many thanks to the contributing developers
+
+- Alicia Schep
+- Jonathan Sidi
+- Bob Rudis
+- Mohamed El Fodil Ihaddaden
+- Thomas Neitmann
+
+---
+
+# Suggestions welcome!
+
+- (PR yet to be merged for gridlines)
+
+- Suggestion for facet strips
+
+--
+
+- What else?
 
 ---
 
 # In Summary
 
- - Vignettes are under-utilised and can be very useful
+- `ggplot2::theme()` is very sophisticated
+--
+... but hard to remember
 
- <!--  -->
+--
 
- - You can get a head-start with `README_to_vignette`
+- `{ggeasy}` provides shortcuts to common actions with autocomplete 
 
- <!--  -->
+--
 
- - Think about how a new user would approach your package -- where should they start?
+.center[
+```{r qr, out.width = "275px", echo = FALSE}
+plot(qrcode::qr_code("https://jonocarroll.github.io/ggeasy/"))
+```
 
- <!--  -->
- 
- - If this inspires you to write a vignette, please let me know on Twitter!
+[https://jonocarroll.github.io/ggeasy/](https://jonocarroll.github.io/ggeasy/)
+]
 
- <!--  -->
- 
- - If you'd like to collaborate on a vignette-assisting package, let me know!
 
-<table style="border-style:none;padding-top:30px;" class=".table">
-  <br />
-  <br />
+<table style="border-style:none;padding-top:-20px;" class=".table">
   <tr>
-    <th style="padding-right:25px!important" align="center"><a href="https://twitter.com/carroll_jono"> <i class="fa fa-twitter fa-3x"></i> </a></th>
-    <th style="padding-left:25px!important" align="center"><a href="https://github.com/jonocarroll"> <i class="fa fa-github fa-3x"></i> </a></th>
-    <th style="padding-left:25px!important" align="center"><a href="https://gitlab.com/jonocarroll"> <i class="fa fa-gitlab fa-3x"></i> </a></th>
+    <th style="padding-right:25px!important" align="center"><a href="https://twitter.com/carroll_jono"> <i class="fa fa-twitter fa-2x"></i> </a></th>
+    <th style="padding-left:25px!important" align="center"><a href="https://github.com/jonocarroll"> <i class="fa fa-github fa-2x"></i> </a></th>
+    <th style="padding-left:25px!important" align="center"><a href="https://gitlab.com/jonocarroll"> <i class="fa fa-gitlab fa-2x"></i> </a></th>
   </tr>
   <tr style="background-color:#fafafa">
     <th style="padding-right:25px!important"><a href="https://twitter.com/carroll_jono"> @carroll_jono </a></th>
